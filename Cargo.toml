@@ -1,0 +1,10 @@
+[package]
+name = "opencv-rust-example"
+version = "0.1.0"
+edition = "2021"
+
+[workspace]
+members = ["mask-operations", "showing-image"]
+
+[workspace.dependencies]
+opencv = "0.92.2"

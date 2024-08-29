@@ -11,10 +11,7 @@ fn main() {
     ];
 
     // Create a Mat object with the kernel values
-    let kernel = Mat::from_slice_2d(
-        &[&kernel_values[0..3],
-            &kernel_values[3..6],
-            &kernel_values[6..9]]).unwrap();
+    let kernel = Mat::from_slice(&kernel_values).unwrap();
     let img = imread("./images/cat.jpeg", IMREAD_COLOR).expect("Image not found");
     let mut output = Mat::default();
     filter_2d(&img, &mut output, -1, &kernel, Default::default(), Default::default(), 0).unwrap();

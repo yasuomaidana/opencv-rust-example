@@ -1,7 +1,7 @@
-use opencv::core::{min_max_loc, Mat, MatTraitConst, Size, Vec3b, BORDER_DEFAULT, CV_8U};
+use opencv::core::{min_max_loc, Mat, MatTraitConst, Size, Vec3b, BORDER_DEFAULT, BORDER_REFLECT_101, CV_32F, CV_8U};
 use opencv::highgui::{imshow, wait_key};
 use opencv::imgcodecs::{imread, IMREAD_COLOR};
-use opencv::imgproc::{cvt_color, COLOR_BGR2GRAY, gaussian_blur};
+use opencv::imgproc::{cvt_color, COLOR_BGR2GRAY, gaussian_blur, sobel};
 
 fn main() {
 
@@ -36,6 +36,23 @@ fn main() {
 
     let mut draw = Mat::default();
     gaussian_output.convert_to(&mut draw, CV_8U, 255.0/(max_val - min_val), -min_val * 255.0/(max_val - min_val)).unwrap();
+
+    // Apply Sobel operator to find gradients in the x-direction
+    let mut sobelx: Mat = Mat::default();
+    sobel(&draw, &mut sobelx, CV_32F, 1, 0, 3, 1.0, 0.0, BORDER_REFLECT_101).unwrap();
+
+    // Find the minimum and maximum values in the Sobel gradient map
+    let mut min_val: f64 = 0.0;
+    let mut max_val: f64 = 0.0;
+    min_max_loc(&sobelx, Some(&mut min_val), Some(&mut max_val), None, None, &Mat::default()).unwrap();
+
+
+    // Scale the Sobel gradient map to [0, 255] for visualization
+    let mut draw: Mat = Mat::default();
+    sobelx.convert_to(&mut draw, CV_8U,
+                      255.0 / (max_val - min_val),
+                      -min_val * 255.0 / (max_val - min_val)).unwrap();
+
     imshow("Final Draw", &draw).unwrap();
     wait_key(0).expect("Failed to wait for key");
 }

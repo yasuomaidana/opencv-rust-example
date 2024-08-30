@@ -142,6 +142,13 @@ name = "opencv-rust-example"
 version = "0.1.0"
 
 [[package]]
+name = "operation-with-images"
+version = "0.1.0"
+dependencies = [
+ "opencv",
+]
+
+[[package]]
 name = "percent-encoding"
 version = "2.3.1"
 source = "registry+https://github.com/rust-lang/crates.io-index"

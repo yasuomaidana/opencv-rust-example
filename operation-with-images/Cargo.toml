@@ -1,0 +1,7 @@
+[package]
+name = "operation-with-images"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+opencv = {workspace = true}

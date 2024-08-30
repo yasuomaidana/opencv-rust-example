@@ -1,0 +1,7 @@
+[package]
+name = "sobel-x-example"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+opencv = {workspace = true}

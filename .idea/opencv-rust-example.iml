@@ -5,6 +5,7 @@
       <sourceFolder url="file://$MODULE_DIR$/mask-operations/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/operation-with-images/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/showing-image/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/sobel-x-example/src" isTestSource="false" />
       <sourceFolder url="file://$MODULE_DIR$/src" isTestSource="false" />
       <excludeFolder url="file://$MODULE_DIR$/target" />
     </content>

@@ -227,6 +227,13 @@ dependencies = [
 ]
 
 [[package]]
+name = "sobel-x-example"
+version = "0.1.0"
+dependencies = [
+ "opencv",
+]
+
+[[package]]
 name = "syn"
 version = "2.0.76"
 source = "registry+https://github.com/rust-lang/crates.io-index"

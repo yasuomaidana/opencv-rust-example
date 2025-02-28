@@ -1,5 +1,5 @@
 use opencv::core::{Mat, MatTraitConst, CV_32F, CV_8U, min_max_loc, BORDER_REFLECT_101};
-
+use opencv::core::AlgorithmHint::ALGO_HINT_APPROX;
 use opencv::highgui::{imshow, wait_key};
 use opencv::imgcodecs::{imread, IMREAD_COLOR};
 use opencv::imgproc::{cvt_color, COLOR_BGR2GRAY, sobel};
@@ -10,7 +10,7 @@ fn main() {
 
     // Convert the image to grayscale
     let mut grey: Mat = Mat::default();
-    cvt_color(&img, &mut grey, COLOR_BGR2GRAY,1).unwrap();
+    cvt_color(&img, &mut grey, COLOR_BGR2GRAY,1, ALGO_HINT_APPROX).unwrap();
 
     // Apply Sobel operator to find gradients in the x-direction
     let mut sobelx: Mat = Mat::default();

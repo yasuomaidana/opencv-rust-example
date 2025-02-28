@@ -1,4 +1,5 @@
 use opencv::core::{min_max_loc, Mat, MatTraitConst, Size, Vec3b, BORDER_DEFAULT, BORDER_REFLECT_101, CV_32F, CV_8U};
+use opencv::core::AlgorithmHint::{ALGO_HINT_APPROX, ALGO_HINT_DEFAULT};
 use opencv::highgui::{imshow, wait_key};
 use opencv::imgcodecs::{imread, IMREAD_COLOR};
 use opencv::imgproc::{cvt_color, COLOR_BGR2GRAY, gaussian_blur, sobel};
@@ -12,12 +13,12 @@ fn main() {
 
     let mut output = Mat::default();
 
-    cvt_color(&img, &mut output, COLOR_BGR2GRAY,1).unwrap();
+    cvt_color(&img, &mut output, COLOR_BGR2GRAY,1, ALGO_HINT_APPROX).unwrap();
 
     let kernel_size = Size::new(11, 11);
     let mut gaussian_output = Mat::default();
 
-    gaussian_blur(&output,&mut gaussian_output, kernel_size, 25.0, 25.0, BORDER_DEFAULT).unwrap();
+    gaussian_blur(&output, &mut gaussian_output, kernel_size, 25.0, 25.0, BORDER_DEFAULT, ALGO_HINT_DEFAULT).unwrap();
     imshow("Gray-Gaussian image", &gaussian_output).unwrap();
 
     let mut min_val = 0.0;
